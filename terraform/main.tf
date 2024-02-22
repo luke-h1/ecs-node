@@ -1,6 +1,6 @@
 module "vpc" {
   source  = "cloudposse/vpc/aws"
-  version = "2.0.0"
+  version = "2.1.1"
 
   namespace = var.namespace
   stage     = var.stage
@@ -11,7 +11,7 @@ module "vpc" {
 
 module "subnets" {
   source  = "cloudposse/dynamic-subnets/aws"
-  version = "2.0.4"
+  version = "2.4.1"
 
   namespace = var.namespace
   stage     = var.stage
@@ -27,7 +27,7 @@ module "subnets" {
 
 module "alb" {
   source  = "cloudposse/alb/aws"
-  version = "1.7.0"
+  version = "1.11.1"
 
   namespace = var.namespace
   stage     = var.stage
@@ -55,7 +55,7 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 
 module "ecr" {
   source  = "cloudposse/ecr/aws"
-  version = "0.35.0"
+  version = "0.40.1"
 
   namespace = var.namespace
   stage     = var.stage
@@ -72,7 +72,7 @@ module "ecr" {
 
 module "cloudwatch_logs" {
   source  = "cloudposse/cloudwatch-logs/aws"
-  version = "0.6.6"
+  version = "0.6.8"
 
   namespace = var.namespace
   stage     = var.stage
@@ -83,7 +83,7 @@ module "cloudwatch_logs" {
 
 module "container_definition" {
   source  = "cloudposse/ecs-container-definition/aws"
-  version = "0.58.1"
+  version = "0.61.1"
 
   container_name   = "${var.namespace}-${var.stage}-${var.name}"
   container_image  = "${module.ecr.repository_url}:${var.image_tag}"
@@ -123,7 +123,7 @@ module "container_definition" {
 
 module "ecs_alb_service_task" {
   source  = "cloudposse/ecs-alb-service-task/aws"
-  version = "0.66.4"
+  version = "0.72.0"
 
   namespace = var.namespace
   stage     = var.stage
