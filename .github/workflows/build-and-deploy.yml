@@ -79,11 +79,6 @@ jobs:
         id: plan
         working-directory: ./terraform
         run: terraform plan -var="image_tag=$GITHUB_REF_NAME"
-        continue-on-error: true
-
-      - name: Terraform Plan Status
-        if: steps.plan.outcome == 'failure'
-        run: exit 1
 
       - name: Terraform Apply
         working-directory: ./terraform
